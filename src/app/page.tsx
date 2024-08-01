@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
-import About from "../components/About";
 import Services from "../components/Services";
 import Contact from "../components/Contact";
+import Slide from "@/components/Slide";
 
 export default function Home() {
   return (
@@ -17,8 +17,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <Slide />
       <Hero />
-      <About />
       <Services />
       <Contact />
     </div>
