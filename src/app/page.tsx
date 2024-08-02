@@ -5,6 +5,8 @@ import Services from "../components/Services";
 import Contact from "../components/Contact";
 import Slide from "@/components/Slide";
 
+import Category from "@/components/Category";
+
 export default function Home() {
   return (
     <div>
@@ -19,6 +21,7 @@ export default function Home() {
       <Header />
       <Slide />
       <Hero />
+      <Category />
       <Services />
       <Contact />
     </div>

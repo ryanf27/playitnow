@@ -4,16 +4,13 @@ import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/autoplay";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 const Slide: React.FC = () => {
   return (
     <>
-      <div className="relative w-full max-w-5xl mx-auto my-20 overflow-hidden rounded-3xl ">
+      <div className="relative w-full max-w-6xl mx-auto my-20 overflow-hidden rounded-3xl ">
         <Swiper
+          loop={true}
           spaceBetween={30}
           centeredSlides={true}
           autoplay={{
@@ -23,12 +20,8 @@ const Slide: React.FC = () => {
           pagination={{
             clickable: true,
           }}
-          navigation={{
-            nextEl: ".next-button",
-            prevEl: ".prev-button",
-          }}
+          navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
         >
           <SwiperSlide>
             <div className="relative">
