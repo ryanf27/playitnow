@@ -83,52 +83,47 @@ const Category: React.FC = () => {
   ];
 
   return (
-    <>
-      <div className="w-full max-w-6xl mx-auto my-28 overflow-hidden">
-        <Swiper
-          loop={true}
-          spaceBetween={30}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
-          }}
-          effect={"coverflow"}
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={"auto"}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          navigation={true}
-          pagination={{ clickable: true }}
-          modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
-        >
-          {categories.map((category, index) => (
-            <SwiperSlide key={index} className="w-1/5">
-              <Link
-                href={category.link}
-                className="block relative w-full h-full"
-              >
-                <Image
-                  width={400}
-                  height={400}
-                  src={category.imageUrl}
-                  alt={category.title}
-                  className="rounded-md "
-                />
-                <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center p-2">
-                  {category.title}
-                </div>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </>
+    <div className="w-full max-w-6xl mx-auto my-28 overflow-hidden">
+      <Swiper
+        loop={true}
+        spaceBetween={30}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={"auto"}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        }}
+        navigation={true}
+        pagination={{ clickable: true }}
+        modules={[EffectCoverflow, Pagination, Autoplay, Navigation]}
+      >
+        {categories.map((category, index) => (
+          <SwiperSlide key={index} className="w-1/3">
+            <Link href={category.link} className="block relative w-full h-full">
+              <Image
+                width={600}
+                height={600}
+                src={category.imageUrl}
+                alt={category.title}
+                className="rounded-md w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center p-2">
+                {category.title}
+              </div>
+            </Link>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 };
 
