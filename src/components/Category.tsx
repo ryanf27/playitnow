@@ -12,8 +12,10 @@ import {
   Navigation,
 } from "swiper/modules";
 
-const Category: React.FC = () => {
-  const categories = [
+import { Category } from "@/types";
+
+const CategoryCarousel: React.FC = () => {
+  const categories: Category[] = [
     {
       title: "Electric Guitars",
       imageUrl:
@@ -83,7 +85,10 @@ const Category: React.FC = () => {
   ];
 
   return (
-    <div className="w-full max-w-6xl mx-auto my-28 overflow-hidden">
+    <div className="w-full max-w-6xl mx-auto mt-20 mb-52 overflow-hidden">
+      <div>
+        <h2 className="text-center text-4xl mb-20">Shop by Category</h2>
+      </div>
       <Swiper
         loop={true}
         spaceBetween={30}
@@ -127,4 +132,4 @@ const Category: React.FC = () => {
   );
 };
 
-export default Category;
+export default CategoryCarousel;

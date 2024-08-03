@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Newsletter from "@/components/Newsletter";
 import BlogSection from "@/components/Blog";
 import Favorit from "@/components/Favorit";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -23,7 +24,13 @@ export default function Home() {
       <Slide />
       <Hero />
       <Category />
-
+      <Image
+        src={"/banner.svg"}
+        alt="Slide 1"
+        width={1920}
+        height={200}
+        className="mb-20"
+      />
       <Favorit />
       <BlogSection />
       <Newsletter />

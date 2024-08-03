@@ -75,3 +75,7 @@
 .swiper-pagination-bullet-active {
   background-color: red;
 }
+
+.text-container {
+  scrollbar-width: thin;
+}

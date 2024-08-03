@@ -63,7 +63,7 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="bg-neutral-950 text-white">
+    <header className="bg-white text-black">
       {/* header 1 */}
       <div className="container mx-auto grid grid-cols-3 items-center px-10">
         <div className="flex items-center col-span-1">
@@ -81,7 +81,7 @@ const Header: React.FC = () => {
         </div>
         <div className="hidden md:flex justify-center col-span-1">
           <Link href="/">
-            <Image src="/icon.svg" width={120} height={120} alt="logo" />
+            <Image src="/logo.svg" width={120} height={120} alt="logo" />
           </Link>
         </div>
         <div className="flex items-center justify-end col-span-1 space-x-4">
@@ -98,7 +98,7 @@ const Header: React.FC = () => {
       </div>
 
       {/* header 2 */}
-      <div className="hidden md:flex justify-center bg-zinc-300  space-x-8  py-2">
+      <div className="hidden md:flex justify-center bg-gold-muted  space-x-8  py-2">
         {menuItems.map((menuItem, index) => (
           <DropDownMenu
             key={index}

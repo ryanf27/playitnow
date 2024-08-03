@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
-const gibsonProducts = [
+const favProducts = [
   {
     title: "Gibson Les Paul Standard '50s P-90 Electric Guitar Gold Top",
     price: "2,599.00",
@@ -30,7 +30,7 @@ const gibsonProducts = [
     link: "/Gibson-Custom/Murphy-Lab-1959-Les-Paul-Standard-Reissue-Ultra-Light-Aged-Electric-Guitar-Southern-Fade-1500000338294.gc",
   },
   {
-    title: "Gibson Non-Reverse Thunderbird Bass Guitar Sparkling Burgundy",
+    title: "Gibson Non-Reverse Thunderbird Bass Guitar Sparkling Burgundy ",
     price: "2,399.00",
     imageUrl:
       "https://media.guitarcenter.com/is/image/MMGS7/Non-Reverse-Thunderbird-Bass-Guitar-Sparkling-Burgundy/L83980000003000-00-180x180.jpg",
@@ -47,15 +47,12 @@ const gibsonProducts = [
 
 const FavoritCarousel: React.FC = () => {
   return (
-    <section id="scrollingCarousel2" className="bg-gray-900 py-12">
+    <section className="py-12">
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-white text-2xl">Gibson: Collector Favorites</h3>
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="mb-4 text-4xl">Collector Favorites</h3>
           <div>
-            <Link
-              href="/"
-              className="text-yellow-500 hover:underline flex items-center"
-            >
+            <Link href="/" className="flex items-center">
               View All
             </Link>
           </div>
@@ -81,12 +78,12 @@ const FavoritCarousel: React.FC = () => {
           }}
           modules={[Navigation, Pagination]}
         >
-          {gibsonProducts.map((product, index) => (
-            <SwiperSlide key={index} className="p-2">
-              <div className="bg-gray-800 rounded-lg p-4 shadow-md flex flex-col justify-between">
+          {favProducts.map((product, index) => (
+            <SwiperSlide key={index}>
+              <div className="flex flex-col justify-between mr-6">
                 <div className="mb-4">
                   <div className="mb-4">
-                    <Link href={product.link} legacyBehavior>
+                    <Link href={product.link}>
                       <Image
                         className="rounded-md mx-auto"
                         src={product.imageUrl}
@@ -96,19 +93,19 @@ const FavoritCarousel: React.FC = () => {
                       />
                     </Link>
                   </div>
-                  <div className="mb-4 text-center">
-                    <Link href={product.link} className="text-gray-100 ">
+                  <div className="mb-6 text-center overflow-y-auto h-32 text-container">
+                    <Link href={product.link} className=" ">
                       {product.title}
                     </Link>
                   </div>
-                  <div className="text-yellow-400 text-lg font-semibold text-center mb-4">
-                    <strong>Now:</strong> <span>${product.price}</span>
+                  <div className="text-center">
+                    <strong>$: </strong> <span>${product.price}</span>
                   </div>
                 </div>
-                <div className="text-center mb-2">
+                <div className="text-center mb-2 ">
                   <Link
                     href={product.link}
-                    className="bg-yellow-500 text-gray-900 py-2 px-4 rounded-md hover:bg-yellow-600 transition duration-300"
+                    className="bg-gold-muted text-gray-900 py-2 px-4 rounded-md hover:bg-yellow-600 transition duration-300"
                     aria-label={`Shop Now for ${product.title}`}
                   >
                     Shop Now
