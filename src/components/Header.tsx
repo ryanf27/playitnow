@@ -23,7 +23,7 @@ const Header: React.FC = () => {
       items: [],
     },
     {
-      title: "Whats's New",
+      title: "What's New",
       items: [],
     },
     {
@@ -63,42 +63,75 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="bg-white text-black">
+    <header className="bg-white text-black shadow-md">
       {/* header 1 */}
-      <div className="container mx-auto grid grid-cols-3 items-center px-10">
-        <div className="flex items-center col-span-1">
+      <div className="container mx-auto flex items-center justify-between p-4">
+        <div className="flex items-center">
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-black"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {menuOpen ? <FaTimes /> : <FaBars />}
+            {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-          <div className="hidden md:flex space-x-4">
-            <a href="/Garage">Buy</a>
-            <a href="/gibson-app">Rent</a>
-            <a href="/Find-A-Store">Looking for Musicians</a>
+          <div className="hidden md:flex space-x-4 ml-4">
+            <Link
+              href="/Garage"
+              className="hover:text-yellow-500 transition-colors duration-300"
+            >
+              Buy
+            </Link>
+            <Link
+              href="/gibson-app"
+              className="hover:text-yellow-500 transition-colors duration-300"
+            >
+              Rent
+            </Link>
+            <Link
+              href="/Find-A-Store"
+              className="hover:text-yellow-500 transition-colors duration-300"
+            >
+              Looking for Musicians
+            </Link>
           </div>
         </div>
-        <div className="hidden md:flex justify-center col-span-1">
+        <div className="hidden md:flex justify-center">
           <Link href="/">
-            <Image src="/logo.svg" width={120} height={120} alt="logo" />
+            <Image
+              src="/logo.svg"
+              width={120}
+              height={120}
+              alt="logo"
+              className="hidden md:block"
+            />
           </Link>
         </div>
-        <div className="flex items-center justify-end col-span-1 space-x-4">
-          <a href="/en-US/Search" aria-label="Search">
-            <FaSearch />
-          </a>
-          <a href="/en-US/my-account" aria-label="Gibson Account">
-            <FaUser />
-          </a>
-          <a href="" aria-label="Shopping Cart">
-            <FaShoppingCart />
-          </a>
+        <div className="flex items-center space-x-4">
+          <Link
+            href="/en-US/Search"
+            aria-label="Search"
+            className="hover:text-yellow-500 transition-colors duration-300"
+          >
+            <FaSearch size={24} />
+          </Link>
+          <Link
+            href="/en-US/my-account"
+            aria-label="Gibson Account"
+            className="hover:text-yellow-500 transition-colors duration-300"
+          >
+            <FaUser size={24} />
+          </Link>
+          <Link
+            href=""
+            aria-label="Shopping Cart"
+            className="hover:text-yellow-500 transition-colors duration-300"
+          >
+            <FaShoppingCart size={24} />
+          </Link>
         </div>
       </div>
 
       {/* header 2 */}
-      <div className="hidden md:flex justify-center bg-gold-muted  space-x-8  py-2">
+      <div className="hidden md:flex justify-center bg-yellow-500 space-x-8 py-2">
         {menuItems.map((menuItem, index) => (
           <DropDownMenu
             key={index}
@@ -112,26 +145,28 @@ const Header: React.FC = () => {
           {menuItems.map((menuItem, index) => (
             <div key={index} className="mb-4">
               <button
-                className="w-full text-left"
+                className="w-full text-left text-white hover:bg-yellow-500 py-2 transition-colors duration-300"
                 onClick={() => setMenuOpen(false)}
               >
                 {menuItem.title}
               </button>
-              <div className="pl-4 mt-2">
-                {menuItem.items.map((item, subIndex) => (
-                  <div key={subIndex} className="mb-2">
-                    <h6 className="font-bold">{item.name}</h6>
-                    {item.subItems &&
-                      item.subItems.map((subItem, subSubIndex) => (
-                        <p key={subSubIndex}>
-                          <a className="hover:underline" href={subItem.link}>
-                            {subItem.name}
-                          </a>
-                        </p>
-                      ))}
-                  </div>
-                ))}
-              </div>
+              {menuItem.items.length > 0 && (
+                <div className="pl-4 mt-2">
+                  {menuItem.items.map((item, subIndex) => (
+                    <div key={subIndex} className="mb-2">
+                      <h6 className="font-bold">{item.name}</h6>
+                      {item.subItems &&
+                        item.subItems.map((subItem, subSubIndex) => (
+                          <p key={subSubIndex}>
+                            <a className="hover:underline" href={subItem.link}>
+                              {subItem.name}
+                            </a>
+                          </p>
+                        ))}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
