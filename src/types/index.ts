@@ -21,3 +21,25 @@ export interface Category {
   imageUrl: string;
   link: string;
 }
+
+export interface BreadcrumbProps {
+  selectedCategory: string;
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
+
+export interface ProductListProps {
+  products: Product[];
+}
+
+export interface SidebarProps {
+  filters: { [key: string]: string[] };
+  selectedFilters: { [key: string]: string[] };
+  onFilterChange: (category: string, filter: string) => void;
+}

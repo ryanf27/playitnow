@@ -9,6 +9,9 @@ import {
   FaSearch,
   FaUser,
   FaShoppingCart,
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
 } from "react-icons/fa";
 
 import { DropdownItem } from "@/types/index";
@@ -65,7 +68,7 @@ const Header: React.FC = () => {
   return (
     <header className="bg-white text-black shadow-md">
       {/* header 1 */}
-      <div className="container mx-auto flex items-center justify-between p-4">
+      <div className="container mx-auto flex items-center justify-between px-12 py-2">
         <div className="flex items-center">
           <button
             className="md:hidden text-black"
@@ -73,57 +76,58 @@ const Header: React.FC = () => {
           >
             {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-          <div className="hidden md:flex space-x-4 ml-4">
-            <Link
-              href="/Garage"
-              className="hover:text-yellow-500 transition-colors duration-300"
-            >
-              Buy
-            </Link>
-            <Link
-              href="/gibson-app"
-              className="hover:text-yellow-500 transition-colors duration-300"
-            >
-              Rent
-            </Link>
-            <Link
-              href="/Find-A-Store"
-              className="hover:text-yellow-500 transition-colors duration-300"
-            >
-              Looking for Musicians
-            </Link>
-          </div>
-        </div>
-        <div className="hidden md:flex justify-center">
           <Link href="/">
             <Image
               src="/logo.svg"
-              width={120}
-              height={120}
+              width={60}
+              height={60}
               alt="logo"
               className="hidden md:block"
             />
+          </Link>
+        </div>
+        <div className="hidden md:flex items-center space-x-8">
+          <Link
+            href="https://www.facebook.com"
+            aria-label="Facebook"
+            className="transition-colors duration-300 hover:text-[#3b5998]"
+          >
+            <FaFacebook size={30} />
+          </Link>
+          <Link
+            href="https://www.twitter.com"
+            aria-label="Twitter"
+            className="transition-colors duration-300 hover:text-[#1da1f2]"
+          >
+            <FaTwitter size={30} />
+          </Link>
+          <Link
+            href="https://www.instagram.com"
+            aria-label="Instagram"
+            className="transition-colors duration-300 hover:text-[#e4405f]"
+          >
+            <FaInstagram size={30} />
           </Link>
         </div>
         <div className="flex items-center space-x-4">
           <Link
             href="/en-US/Search"
             aria-label="Search"
-            className="hover:text-yellow-500 transition-colors duration-300"
+            className="hover:text-gray-400 transition-colors duration-300"
           >
             <FaSearch size={24} />
           </Link>
           <Link
             href="/en-US/my-account"
             aria-label="Gibson Account"
-            className="hover:text-yellow-500 transition-colors duration-300"
+            className="hover:text-gray-400 transition-colors duration-300"
           >
             <FaUser size={24} />
           </Link>
           <Link
-            href=""
+            href="/cart"
             aria-label="Shopping Cart"
-            className="hover:text-yellow-500 transition-colors duration-300"
+            className="hover:text-gray-400 transition-colors duration-300"
           >
             <FaShoppingCart size={24} />
           </Link>
@@ -131,7 +135,7 @@ const Header: React.FC = () => {
       </div>
 
       {/* header 2 */}
-      <div className="hidden md:flex justify-center bg-yellow-500 space-x-8 py-2">
+      <div className="hidden md:flex justify-center bg-gray-200 space-x-8 py-2">
         {menuItems.map((menuItem, index) => (
           <DropDownMenu
             key={index}

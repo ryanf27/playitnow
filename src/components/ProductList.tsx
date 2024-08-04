@@ -1,0 +1,32 @@
+import React from "react";
+import { ProductListProps } from "@/types";
+import Image from "next/image";
+
+const ProductList: React.FC<ProductListProps> = ({ products }) => {
+  return (
+    <div className="bg-gray-100 container mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {products.map((product) => (
+        <div
+          key={product.id}
+          className="bg-white border p-4 rounded hover:shadow-sm  transition-shadow duration-300"
+        >
+          <Image
+            width={300}
+            height={700}
+            src={product.imageUrl}
+            alt={product.name}
+            style={{ objectFit: "contain" }}
+            className="w-full h-52 object-cover rounded mb-4"
+          />
+          <h2 className="text-xl font-bold mb-2">{product.name}</h2>
+          <p className="text-gray-700 mb-4">{product.description}</p>
+          <div className="text-lg font-semibold text-blue-600">
+            ${product.price.toFixed(2)}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ProductList;
