@@ -1,10 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Breadcrumb from "@/components/Breadcrumb";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Newsletter from "@/components/Newsletter";
 import ProductList from "@/components/ProductList";
 import Sidebar from "@/components/Sidebar";
 import { products } from "@/data/product";
@@ -46,8 +42,6 @@ const Page = ({ params }: { params: { category: string } }) => {
 
   return (
     <>
-      <Header />
-      <Breadcrumb selectedCategory={category} />
       <div className="flex mb-10">
         <Sidebar
           filters={filters}
@@ -56,8 +50,6 @@ const Page = ({ params }: { params: { category: string } }) => {
         />
         <ProductList products={filteredProducts} />
       </div>
-      <Newsletter />
-      <Footer />
     </>
   );
 };

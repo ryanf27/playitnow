@@ -43,3 +43,8 @@ export interface SidebarProps {
   selectedFilters: { [key: string]: string[] };
   onFilterChange: (category: string, filter: string) => void;
 }
+
+export interface BreadcrumbContextType {
+  breadcrumb: string;
+  setBreadcrumb: (breadcrumb: string) => void;
+}

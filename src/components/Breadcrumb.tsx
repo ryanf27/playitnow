@@ -1,7 +1,30 @@
-import Link from "next/link";
-import { BreadcrumbProps } from "@/types";
+"use client";
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ selectedCategory }) => {
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const Breadcrumb: React.FC = () => {
+  const pathname = usePathname();
+
+  const generateBreadcrumbs = () => {
+    const pathParts = pathname.split("/").filter(Boolean);
+    let fullPath = "";
+    const breadcrumbs = [
+      { label: "Home", link: "/" },
+      ...pathParts.map((part) => {
+        fullPath += `/${part}`;
+        return {
+          label: part.charAt(0).toUpperCase() + part.slice(1),
+          link: fullPath,
+        };
+      }),
+    ];
+    return breadcrumbs;
+  };
+
+  const breadcrumbs = generateBreadcrumbs();
+
   return (
     <div className="py-4 border-b-2 mb-8 mx-20">
       <div className="container mx-auto px-4">
@@ -10,17 +33,27 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ selectedCategory }) => {
           className="hidden lg:flex text-sm text-gray-500"
         >
           <ol className="flex list-none">
-            <li className="breadcrumb-item">
-              <Link href="/" className="text-blue-600 hover:text-blue-800">
-                Home
-              </Link>
-            </li>
-            <li className="mx-2 text-gray-400">/</li>
-            <li className="breadcrumb-item">
-              <span aria-current="page" className="text-gray-500">
-                {selectedCategory}
-              </span>
-            </li>
+            {breadcrumbs.map((breadcrumb, index) => (
+              <React.Fragment key={index}>
+                <li className="breadcrumb-item">
+                  {breadcrumb.link ? (
+                    <Link
+                      href={breadcrumb.link}
+                      className="text-blue-600 hover:text-blue-800"
+                    >
+                      {breadcrumb.label}
+                    </Link>
+                  ) : (
+                    <span aria-current="page" className="text-gray-500">
+                      {breadcrumb.label}
+                    </span>
+                  )}
+                </li>
+                {index < breadcrumbs.length - 1 && (
+                  <li className="mx-2 text-gray-400">/</li>
+                )}
+              </React.Fragment>
+            ))}
           </ol>
         </nav>
         <nav aria-label="Breadcrumb" className="lg:hidden">
@@ -32,9 +65,11 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ selectedCategory }) => {
             </li>
           </ol>
         </nav>
-        <h1 className="mt-2 text-3xl text-gray-800 font-bold">
-          {selectedCategory}
-        </h1>
+        {breadcrumbs.length > 0 && (
+          <h1 className="mt-2 text-3xl text-gray-800 font-bold">
+            {breadcrumbs[breadcrumbs.length - 1].label}
+          </h1>
+        )}
       </div>
     </div>
   );
