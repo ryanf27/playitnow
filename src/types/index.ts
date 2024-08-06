@@ -36,6 +36,7 @@ export interface Product {
 
 export interface ProductListProps {
   products: Product[];
+  category: string;
 }
 
 export interface SidebarProps {

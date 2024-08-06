@@ -48,7 +48,7 @@ const Page = ({ params }: { params: { category: string } }) => {
           selectedFilters={selectedFilters}
           onFilterChange={handleFilterChange}
         />
-        <ProductList products={filteredProducts} />
+        <ProductList products={filteredProducts} category={category} />
       </div>
     </>
   );
