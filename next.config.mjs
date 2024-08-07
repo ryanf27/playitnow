@@ -5,6 +5,8 @@ const nextConfig = {
       "plus.unsplash.com",
       "images.unsplash.com",
       "media.guitarcenter.com",
+      "swiperjs.com",
+      "static.guitarcenter.com",
     ],
   },
 };
