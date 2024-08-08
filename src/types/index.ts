@@ -31,7 +31,14 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  cardImg: string;
+  collectImg: string[];
+  category: string;
+  brand: string;
+  condition: string;
+  premiumGear: string;
+  orientation: string;
+  bodyType: string;
 }
 
 export interface ProductListProps {

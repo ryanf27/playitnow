@@ -2,13 +2,27 @@
 
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, FreeMode, Thumbs } from "swiper/modules";
+import { Navigation, FreeMode, Thumbs } from "swiper/modules";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
+
 import { products } from "@/data/product";
+import { Product } from "@/types";
+
+import { CiHeart } from "react-icons/ci";
 
 const ItemPage = () => {
-  const product = products[0];
+  const pathname = usePathname();
+  const id = pathname?.split("/").pop();
+  const product: Product | undefined = products.find(
+    (product) => product.id === Number(id)
+  );
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   const handleAddToCart = () => {
     console.log(`Added ${product.name} to cart`);
@@ -17,7 +31,7 @@ const ItemPage = () => {
   return (
     <div className="container mx-auto px-4">
       <div className="flex flex-col lg:flex-row bg-white px-4 rounded-lg shadow-lg justify-around">
-        <div className="w-full lg:w-1/3 mb-4 lg:mb-0">
+        <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
           <Swiper
             spaceBetween={10}
             navigation={true}
@@ -25,33 +39,17 @@ const ItemPage = () => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper2 max-h-[80%]"
           >
-            <SwiperSlide>
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                layout="responsive"
-                width={264}
-                height={264}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src="https://swiperjs.com/demos/images/nature-2.jpg"
-                alt="Sample Image 2"
-                layout="responsive"
-                width={264}
-                height={264}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src="https://swiperjs.com/demos/images/nature-3.jpg"
-                alt="Sample Image 3"
-                layout="responsive"
-                width={264}
-                height={264}
-              />
-            </SwiperSlide>
+            {product.collectImg?.map((img: string, index: number) => (
+              <SwiperSlide key={index}>
+                <Image
+                  src={img}
+                  alt={product.name}
+                  layout="responsive"
+                  width={264}
+                  height={264}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
           <Swiper
             onSwiper={setThumbsSwiper}
@@ -60,48 +58,35 @@ const ItemPage = () => {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper max-h-12"
+            className="mySwiper max-h-[12%]"
           >
-            <SwiperSlide>
-              <Image
-                src={product.imageUrl}
-                alt={`${product.name} Thumbnail`}
-                layout="responsive"
-                width={86}
-                height={86}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src="https://swiperjs.com/demos/images/nature-2.jpg"
-                alt="Thumbnail 2"
-                layout="responsive"
-                width={86}
-                height={86}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src="https://swiperjs.com/demos/images/nature-3.jpg"
-                alt="Thumbnail 3"
-                layout="responsive"
-                width={86}
-                height={86}
-              />
-            </SwiperSlide>
+            {product.collectImg?.map((img: string, index: number) => (
+              <SwiperSlide key={index}>
+                <Image
+                  src={img}
+                  alt={`${product.name} Thumbnail`}
+                  width={60}
+                  height={60}
+                  style={{ objectFit: "contain" }}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
 
-        <div className="w-full lg:w-1/2 lg:pl-8 flex flex-col justify-between">
+        <div className="w-full lg:w-1/3 lg:pl-8 flex flex-col justify-between">
           <div>
             <h1 className="text-3xl font-semibold mb-4">{product.name}</h1>
-            <div className="text-2xl tracking-wide  text-gray-800 mb-4">
+            <div className="text-2xl tracking-wide text-gray-800 mb-4">
               ${product.price.toFixed(2)}
             </div>
             <div className="text-gray-700 mb-4">{product.description}</div>
           </div>
 
           <div className="flex items-center mb-4">
+            <button className=" hover:text-red-500 px-2 py-3 text-3xl  mr-4 align-middle">
+              <CiHeart />
+            </button>
             <button
               className="bg-[#611122] text-white py-2 px-4 rounded hover:bg-[#8b2b3d] transition duration-300"
               onClick={handleAddToCart}
@@ -109,7 +94,6 @@ const ItemPage = () => {
               Add to Cart
             </button>
             <div className="ml-4 flex items-center">
-              <label className="mr-2">Quantity:</label>
               <select
                 className="border rounded py-2 px-3"
                 aria-label="quantity selector"
@@ -199,7 +183,7 @@ const ItemPage = () => {
             <div className="flex items-center mb-4">
               <div className="rounded-full w-16 h-16 overflow-hidden">
                 <Image
-                  src=" https://static.guitarcenter.com/static/gc/selects/2023/d-dept/guitars-help-icon.jpg"
+                  src="https://static.guitarcenter.com/static/gc/selects/2023/d-dept/guitars-help-icon.jpg"
                   alt="help avatar icon"
                   width={64}
                   height={64}
