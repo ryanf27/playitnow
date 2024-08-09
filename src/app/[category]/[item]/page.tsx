@@ -53,12 +53,12 @@ const ItemPage = () => {
           </Swiper>
           <Swiper
             onSwiper={setThumbsSwiper}
-            spaceBetween={3}
+            spaceBetween={2}
             slidesPerView={3}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper max-h-[12%]"
+            className="mySwiper max-h-[12%] "
           >
             {product.collectImg?.map((img: string, index: number) => (
               <SwiperSlide key={index}>
