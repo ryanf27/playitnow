@@ -14,8 +14,23 @@ const Breadcrumb: React.FC = () => {
       { label: "Home", link: "/" },
       ...pathParts.map((part) => {
         fullPath += `/${part}`;
+
+        const labelMap: { [key: string]: string } = {
+          electricguitars: "Electric Guitars",
+          keyboards: "Keyboards",
+          acousticguitars: "Acoustic Guitars",
+          recording: "Recording",
+          amps: "Amps",
+          effects: "Effects",
+          drums: "Drums",
+          basses: "Basses",
+          accessories: "Accessories",
+          livesound: "Live Sound",
+          used: "Used",
+        };
+
         return {
-          label: part.charAt(0).toUpperCase() + part.slice(1),
+          label: labelMap[part] || part.charAt(0).toUpperCase() + part.slice(1),
           link: fullPath,
         };
       }),

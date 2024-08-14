@@ -46,7 +46,7 @@ const ItemPage = () => {
                   alt={product.name}
                   layout="responsive"
                   width={264}
-                  height={264}
+                  height={264}  
                 />
               </SwiperSlide>
             ))}

@@ -2,16 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ProductListProps, Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-interface PaginatedProductListProps extends ProductListProps {
-  currentPage: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  itemsPerPage: number;
-}
 
-const ProductList: React.FC<PaginatedProductListProps> = ({
-  products,
-  category,
-}) => {
+const ProductList: React.FC<ProductListProps> = ({ products, category }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 8;
   const [paginatedProducts, setPaginatedProducts] = useState<Product[]>([]);
