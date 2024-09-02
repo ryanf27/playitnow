@@ -12,7 +12,6 @@ export interface BlogPost {
   title: string;
   date: string;
   imageUrl: string;
-  link: string;
   altText: string;
 }
 

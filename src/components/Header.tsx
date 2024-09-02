@@ -20,10 +20,11 @@ import DropDownMenu from "@/components/DropDownMenu";
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const menuItems: { title: string; items: DropdownItem[] }[] = [
+  const menuItems: { title: string; items: DropdownItem[]; link?: string }[] = [
     {
       title: "Rentals",
       items: [],
+      link: "/rent",
     },
     {
       title: "What's New",

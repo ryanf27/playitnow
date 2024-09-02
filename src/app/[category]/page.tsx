@@ -45,7 +45,7 @@ const Page = ({ params }: { params: { category: string } }) => {
 
   useEffect(() => {
     const normalizedCategory = filters.Category.find(
-      (cat) => cat.toLowerCase().replace(/ /g, "-") === category.toLowerCase()
+      (cat) => cat.toLowerCase().replace(/ /g, "") === category.toLowerCase()
     );
 
     if (normalizedCategory) {
@@ -80,7 +80,8 @@ const Page = ({ params }: { params: { category: string } }) => {
             if (
               !selectedFilters[filterCategory].some(
                 (category) =>
-                  category.toLowerCase() === product.category.toLowerCase()
+                  category.toLowerCase().replace(/ /g, "") ===
+                  product.category.toLowerCase().replace(/ /g, "")
               )
             ) {
               return false;
